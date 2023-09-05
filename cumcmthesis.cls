@@ -161,7 +161,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % \newfontfamily\Songti[Path=./fonts/]{Songti.ttc}
 % https://blog.csdn.net/programchangesworld/article/details/51882726
 % \setCJKfamilyfont{kai}[AutoFakeBold]{STKaitiSC-Regular}
-\setCJKfamilyfont{kai}[AutoFakeBold, Path=fonts/]{Kaiti.ttc}
+\setCJKfamilyfont{kai}[AutoFakeBold, Path=fonts/]{Songti.ttc}
 \newcommand*{\kai}{\CJKfamily{kai}}
 % \setCJKfamilyfont{song}[AutoFakeBold]{STSongti-SC-Regular}
 \setCJKfamilyfont{song}[AutoFakeBold, Path=fonts/]{Songti.ttc}
