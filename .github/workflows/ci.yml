@@ -26,6 +26,13 @@ jobs:
             apk add msttcorefonts-installer fontconfig
             update-ms-fonts
             fc-cache -f
+      - name: Pre-release
+        run: mv paper.pdf ${{ github.sha }}.pdf
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Build result for ${{ github.sha }}
+          files: ${{ github.sha }}.pdf
   fmt:
     runs-on: ubuntu-latest
     name: format thesis
