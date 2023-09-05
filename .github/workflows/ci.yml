@@ -19,7 +19,9 @@ jobs:
       - name: Accept License
         run: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
       - name: Install font
-        run: sudo apt-get install ttf-mscorefonts-installer
+        run: |
+          sudo apt-get install ttf-mscorefonts-installer
+          fc-cache -f
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
