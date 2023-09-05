@@ -1,0 +1,25 @@
+permissions:
+  contents: read
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+name: CI
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: build thesis
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Install font
+        run: sudo apt-get install msttcorefonts -y
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper.tex
+          extra_fonts: fonts/*
