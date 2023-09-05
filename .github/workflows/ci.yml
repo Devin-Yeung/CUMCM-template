@@ -23,3 +23,4 @@ jobs:
         with:
           root_file: paper.tex
           extra_fonts: fonts/*
+          latexmk_use_xelatex: true
