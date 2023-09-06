@@ -33,3 +33,5 @@ jobs:
       - name: Test justfile
         run: |
           just lite
+        env:
+          DEBUG: true
