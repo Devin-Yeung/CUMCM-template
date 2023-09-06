@@ -9,42 +9,42 @@ concurrency:
   cancel-in-progress: true
 name: CI
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: build thesis
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: paper.tex
-          extra_fonts: fonts/*
-          latexmk_use_xelatex: true
-          pre_compile: |
-            apk add msttcorefonts-installer fontconfig
-            update-ms-fonts
-            fc-cache -f
-      - name: Archive with rar
-        run: |
-          sudo apt install rar
-          rar a paper.rar paper.pdf
-      - name: Calculate MD5
-        run: hash=$(md5sum paper.rar | awk '{print $1}') && echo "MD5_HASH=$hash" >> $GITHUB_ENV
-      - name: Prepare-release
-        run: |
-          mv paper.pdf ${{ github.sha }}.pdf
-          mv paper.rar ${{ env.MD5_HASH }}.rar
-          echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          name: Build result for ${{ github.sha }}
-          files: |
-            ${{ github.sha }}.pdf
-            ${{ env.MD5_HASH }}.rar
-          tag_name: ${{ env.SHORT_SHA }}
+  # build:
+  #   runs-on: ubuntu-latest
+  #   name: build thesis
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         submodules: true
+  #     - name: Compile LaTeX document
+  #       uses: xu-cheng/latex-action@v3
+  #       with:
+  #         root_file: paper.tex
+  #         extra_fonts: fonts/*
+  #         latexmk_use_xelatex: true
+  #         pre_compile: |
+  #           apk add msttcorefonts-installer fontconfig
+  #           update-ms-fonts
+  #           fc-cache -f
+  #     - name: Archive with rar
+  #       run: |
+  #         sudo apt install rar
+  #         rar a paper.rar paper.pdf
+  #     - name: Calculate MD5
+  #       run: hash=$(md5sum paper.rar | awk '{print $1}') && echo "MD5_HASH=$hash" >> $GITHUB_ENV
+  #     - name: Prepare-release
+  #       run: |
+  #         mv paper.pdf ${{ github.sha }}.pdf
+  #         mv paper.rar ${{ env.MD5_HASH }}.rar
+  #         echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+  #     - name: Release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         name: Build result for ${{ github.sha }}
+  #         files: |
+  #           ${{ github.sha }}.pdf
+  #           ${{ env.MD5_HASH }}.rar
+  #         tag_name: ${{ env.SHORT_SHA }}
   fmt:
     runs-on: ubuntu-latest
     name: format thesis and bib
