@@ -1,0 +1,35 @@
+permissions:
+  contents: read
+on:
+  push:
+    branches: [ master ]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+name: check-justfile
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: check-justfile
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Install justfile
+        run: |
+          wget https://github.com/casey/just/releases/download/1.14.0/just-1.14.0-x86_64-unknown-linux-musl.tar.gz -O /tmp/just.tar.gz
+          tar -xvf /tmp/just.tar.gz -C /tmp
+          sudo mv /tmp/just /usr/bin/just
+          chmod +x /usr/bin/just
+      - name: Accept Font License
+        run: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+      - name: Install font
+        run: |
+          sudo apt-get install ttf-mscorefonts-installer
+          fc-cache -f
+      - name: Install LaTeX
+        run: |
+          sudo apt install texlive-full
+      - name: Test justfile
+        run: |
+          just lite
