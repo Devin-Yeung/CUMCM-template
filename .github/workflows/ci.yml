@@ -8,23 +8,23 @@ concurrency:
   cancel-in-progress: true
 name: CI
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   name: build thesis
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: true
-  #     - name: Compile LaTeX document
-  #       uses: xu-cheng/latex-action@v3
-  #       with:
-  #         root_file: paper.tex
-  #         extra_fonts: fonts/*
-  #         latexmk_use_xelatex: true
-  #         pre_compile: |
-  #           apk add msttcorefonts-installer fontconfig
-  #           update-ms-fonts
-  #           fc-cache -f
+  build:
+    runs-on: ubuntu-latest
+    name: build thesis
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper.tex
+          extra_fonts: fonts/*
+          latexmk_use_xelatex: true
+          pre_compile: |
+            apk add msttcorefonts-installer fontconfig
+            update-ms-fonts
+            fc-cache -f
   #     - name: Archive with rar
   #       run: |
   #         sudo apt install rar
