@@ -24,8 +24,8 @@
   // LaTeX ToolChains
   "latex-workshop.latex.tools": [
     {
-      "name": "pdflatex",
-      "command": "pdflatex",
+      "name": "xelatex",
+      "command": "xelatex",
       "args": [
         "-synctex=1",
         "-interaction=nonstopmode",
@@ -45,12 +45,12 @@
   // Build recipes
   "latex-workshop.latex.recipes": [
     {
-      "name": "pdflatex ➞ bibtex ➞ pdflatex ➞ pdflatex ",
-      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+      "name": "xelatex ➞ bibtex ➞ xelatex ➞ xelatex ",
+      "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
     },
     {
-      "name": "pdflatex-lite",
-      "tools": ["pdflatex"]
+      "name": "xelatex-lite",
+      "tools": ["xelatex"]
     }
   ],
   // Enable all the mathjax extensions
