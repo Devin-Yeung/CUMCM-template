@@ -94,25 +94,45 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 %backgroundcolor=\color{gray!5},
-\lstset{
-  frame=tb,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  framerule=1pt,
-  rulecolor=\color{gray!35},
-  backgroundcolor=\color{white},
-  basicstyle={\small\ttfamily},
-  numbers=left,
-  stepnumber=1,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3,
+% \lstset{
+%   frame=tb,
+%   aboveskip=3mm,
+%   belowskip=3mm,
+%   showstringspaces=false,
+%   columns=flexible,
+%   framerule=1pt,
+%   rulecolor=\color{gray!35},
+%   backgroundcolor=\color{white},
+%   basicstyle={\small\ttfamily},
+%   numbers=left,
+%   stepnumber=1,
+%   numberstyle=\tiny\color{gray},
+%   keywordstyle=\color{blue},
+%   commentstyle=\color{dkgreen},
+%   stringstyle=\color{mauve},
+%   breaklines=true,
+%   breakatwhitespace=true,
+%   tabsize=3,
+% }
+\lstdefinestyle{Python}{
+	basicstyle={\small\ttfamily},                % very small code
+	breaklines=true,                             % break long lines
+	commentstyle=\itshape\color{green!50!black}, % comments are green
+	keywordstyle=[1]\color{blue!80!black},
+	keywordstyle=[2]\color{orange!80!black},
+	keywordstyle=[3]\color{red!50!black},
+	stringstyle=\color{mauve},                   % strings are from the telekom
+	% identifierstyle=\color{teal},
+	frame=shadowbox,                             % black line on the left side of code
+	linewidth=\textwidth,                        % centering the box
+	xleftmargin=0.05\textwidth,                  % centering the box
+	xrightmargin=0.05\textwidth,                 % centering the box
+	language=Python,                             % all code is Python
+	tabsize=4,                                   % indent tabs with 4 spaces
+	showstringspaces=false,                      % do not replace spaces with weird underlines
+	columns=fullflexible,
+	upquote=true,                                % fix quote style
+	keepspaces=true,                             % spaces are kept
 }
 % 首行缩进
 \RequirePackage{indentfirst}
