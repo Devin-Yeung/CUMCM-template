@@ -1,0 +1,28 @@
+permissions:
+  contents: read
+on:
+  pull_request_review:
+    types: [submitted]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+name: Check Build
+jobs:
+  build:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    name: Check Build
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper.tex
+          extra_fonts: fonts/*
+          latexmk_use_xelatex: true
+          pre_compile: |
+            apk add msttcorefonts-installer fontconfig
+            update-ms-fonts
+            fc-cache -f
